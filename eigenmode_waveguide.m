@@ -43,14 +43,16 @@ figure(3);imagesc(full(A)~=0);colorbar;axis('image');
 figure(4);imagesc(full(B)~=0);colorbar;axis('image');
 % e=eig(A(int_n, int_n), B(int_n, int_n))
 [V,D,flag] = eigs(A(int_n, int_n), B(int_n, int_n), 20, 'sm'); % 2017a
+kt = sqrt(diag(D));
 
 figure(2);
-for eigen_ii=1:4
-    subplot(2,2,eigen_ii);
+for eigen_ii=1:6
+    subplot(2,3,eigen_ii);
     Ez_all = zeros(pNum, 1);
-    Ez_all(int_n) = V(:,eigen_ii+5);
+    Ez_all(int_n) = V(:,eigen_ii);
     trisurf(t.',p(1,:).',p(2,:).',Ez_all);
     view(2);xlabel('x'); ylabel('y'); zlabel('E_z');axis('equal');
+    title(sprintf('k=%0.4f',kt(eigen_ii)));
 end
 
 % e=eigs(A(int_n, int_n), B(int_n, int_n), 10, 'smallestabs') 
@@ -71,7 +73,7 @@ end
 % a = diag(D);
 % a = a(1:4,1);
 % a./([2.405, 3.832, 3.832, 5.1356].^2).'
-kt = sqrt(diag(D));
+
 kt_exact = load('model2/TMmodes.txt','-ascii');
 kt_exact = kt_exact(:,1);
 kt./kt_exact

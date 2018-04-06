@@ -1,7 +1,16 @@
-04/04/2018
+(markdown [ref](https://guides.github.com/features/mastering-markdown/))
+###04/04/2018
 
-following 9.2.3 in Theory and computation of electromagnetic fields - 2ed - Jian-Ming Jin.pdf
-get the first few TM modes
+Following Section 9.2.3 in *Theory and Computation of Electromagnetic Fields* by Jian-Ming Jin, 2nd edition.
 
-TODO
-[] figure out the eigenvalues k_c ^ 2 = 10^4 * [ 0.4120    0.6353    1.3346    1.0153 ... ]
+Got the first few TM modes.
+
+####TODO
+- [x] figure out the eigenvalues k_c ^ 2 = 10^4 * [ 0.4120    0.6353    1.3346    1.0153 ... ]
+
+###04/05/2018
+
+Fix getAB() function. Test on circular waveguides. Got TM modes as shown here,
+
+![first 6 TM modes, mn=01, 11x2, 21x2, 02](model2/first 6 TM modes, mn=01, 11x2, 21x2, 02.png)
+
