@@ -1,8 +1,11 @@
 function [A, B] = get_AB(p)
 % 2D
+% p(1,i) x_i
+% p(2,i) y_i
 
 AA =( p(1,2) - p(1,1) )*( p(2,3) - p(2,1) ) - ...
     ( p(1,3) - p(1,1) )*( p(2,2) - p(2,1) );
+area = 0.5*AA;
     % (x2-x1 * y3-y1) - (x3-x1 * y2-y1)
 
 abc = zeros(3,3);
@@ -17,7 +20,14 @@ for ii = 1:3
 end
 abc = abc/AA;
 
-A = abc(:,2:3)*abc(:,2:3).';
+% figure(1); hold on;
+% pp = [p,p(:,1)]; plot(pp(1,:),pp(2,:))
+% ii = 3;
+% plot3(pp(1,1), pp(2,1), dot(abc(ii,:),[1, pp(:,1).']),'ro');
+% plot3(pp(1,2), pp(2,2), dot(abc(ii,:),[1, pp(:,2).']),'ro');
+% plot3(pp(1,3), pp(2,3), dot(abc(ii,:),[1, pp(:,3).']),'ro');
+
+A = (abc(:,2:3)*abc(:,2:3).')*area; % *area integral over the triangle
 B = zeros(3,3);
 
 l_x_y = zeros(3,3);
@@ -32,12 +42,11 @@ syy = p(2,1)*p(2,2) + p(2,2)*p(2,3) + p(2,3)*p(2,1);
 l_x_y(1,1) = 1/2;
 l_x_y(2,2) = 1/12*(sx*sx - sxx); %x^2
 l_x_y(3,3) = 1/12*(sy*sy - syy); %y^2
-l_x_y(1,2) = 1/6*sx; l_x_y(2,1) = l_x_y(1,2); %x
-l_x_y(1,3) = 1/6*sy; l_x_y(3,1) = l_x_y(1,3); %y
-l_x_y(2,3) = 1/24*(sx*sy+sxy); l_x_y(3,2) = l_x_y(2,3); %xy
+l_x_y(1,2) = 1/6*sx;            l_x_y(2,1) = l_x_y(1,2); %x
+l_x_y(1,3) = 1/6*sy;            l_x_y(3,1) = l_x_y(1,3); %y
+l_x_y(2,3) = 1/24*(sx*sy+sxy);  l_x_y(3,2) = l_x_y(2,3); %xy
 
-l_x_y = l_x_y*AA;
-
+l_x_y = l_x_y*AA; % *AA integral over the triangle
 
 for ii = 1:3
     for jj = ii:3

@@ -1,6 +1,7 @@
 close all; clear all; clc;
 
-load('model1/mesh.mat');
+% load('model1/mesh.mat');
+load('model2/4k_tri.mat');
 % https://www.mathworks.com/help/pde/ug/pde.pdemodel.generatemesh.html
 % https://www.mathworks.com/help/pde/ug/mesh-data.html
 % e(6,k) is the subdomain number on the left side of the edge (subdomain 0 is the exterior of the geometry), where direction along the edge is given by increasing parameter values.
@@ -41,13 +42,13 @@ nnz(A(int_n, int_n))
 figure(3);imagesc(full(A)~=0);colorbar;axis('image');
 figure(4);imagesc(full(B)~=0);colorbar;axis('image');
 % e=eig(A(int_n, int_n), B(int_n, int_n))
-[V,D,flag] = eigs(A(int_n, int_n), B(int_n, int_n), 10, 'sm'); % 2017a
+[V,D,flag] = eigs(A(int_n, int_n), B(int_n, int_n), 20, 'sm'); % 2017a
 
 figure(2);
 for eigen_ii=1:4
     subplot(2,2,eigen_ii);
     Ez_all = zeros(pNum, 1);
-    Ez_all(int_n) = V(:,eigen_ii);
+    Ez_all(int_n) = V(:,eigen_ii+5);
     trisurf(t.',p(1,:).',p(2,:).',Ez_all);
     view(2);xlabel('x'); ylabel('y'); zlabel('E_z');axis('equal');
 end
@@ -55,6 +56,26 @@ end
 % e=eigs(A(int_n, int_n), B(int_n, int_n), 10, 'smallestabs') 
 % 2017b + https://www.mathworks.com/help/matlab/ref/eigs.html#bu2_q3e-sigma
 % eigs(A,k,'smallestabs') returns the k smallest magnitude eigenvalues.
+
+% diag(D)
+% a=[24.8118
+% 39.8671
+% 65.1878
+% 85.4346];
+% a./[5,8,13,20].'
+% a = [11.6024
+%    29.5776
+%    29.5803
+%    53.4601];
+
+% a = diag(D);
+% a = a(1:4,1);
+% a./([2.405, 3.832, 3.832, 5.1356].^2).'
+kt = sqrt(diag(D));
+kt_exact = load('model2/TMmodes.txt','-ascii');
+kt_exact = kt_exact(:,1);
+kt./kt_exact
+
 
 
 figure(1);
