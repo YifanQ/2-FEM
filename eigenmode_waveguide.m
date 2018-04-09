@@ -1,9 +1,10 @@
 close all; clear all; clc;
 
-TE_or_TM='TE';
+TE_or_TM='TM';
 plotGeometry=false;
 
 % load('model1/mesh.mat');
+% load('model2/4k_tri.mat');
 load('model2/4k_tri.mat');
 % https://www.mathworks.com/help/pde/ug/pde.pdemodel.generatemesh.html
 % https://www.mathworks.com/help/pde/ug/mesh-data.html
@@ -106,9 +107,9 @@ for eigen_ii=1:6
     title(sprintf('k=%0.4f',kt(eigen_ii)));
 end
 
-% kt_exact = load('model2/TEmodes.txt','-ascii');
-% kt_exact = kt_exact(:,1);
-% kt./kt_exact
+kt_exact = load('model2/TEmodes.txt','-ascii');
+kt_exact = kt_exact(:,1);
+kt./kt_exact
 
 end
 % diag(D)

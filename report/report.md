@@ -1,0 +1,2 @@
+In this project, we use finite element method to analyze a homogeneous waveguide. The waveguide is cylindrical and assumed to be uniform (and infinitely long) in its longitudinal direction (z-direction). So the problem can be reduced to a two-dimensional one. It is known that in such a hollow metallic waveguide, there exist two sets of modes: TE and TM modes. (Since there is only one conductor, such a waveguide does not hav a TEM mode.)
+
