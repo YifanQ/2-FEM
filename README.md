@@ -14,6 +14,6 @@ Got the first few TM modes.
 Fix getAB() function. Test on circular waveguides. Got TM modes as shown here,
 
 
-![first 6 TM modes, mn=01, 11x2, 21x2, 02](model2/first_6_TM_modes_mn-01-11x2-21x2-02.png)
+![first 6 TM modes, mn=01, 11x2, 21x2, 02](Circular_Model/first_6_TM_modes_mn-01-11x2-21x2-02.png)
 
 

@@ -58,7 +58,7 @@ end
 
 %% prepare for eigs()
 opts.issym = 1;
-opts.isreal = 1;
+% opts.isreal = 1;
 fprintf('\n\n ========================================== \n\nMATLAB version = %s\n\n', version);
 
 % 9.2 R2017a; 9.3 R2017b
